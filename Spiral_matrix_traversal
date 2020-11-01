@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> return_vec;
+        int dir =0;
+        //bottom is the row length
+        //right is the column length
+        if (matrix.size() == 0 || matrix[0].size() ==0){
+            return return_vec;
+        }
+        int top =0, bottom=(matrix.size())-1,left=0,right =(matrix[0].size())-1;
+    
+        while (top <= bottom && left <=right){
+            // same row diff columns
+            if (dir ==0){
+                for (int i=left;i<=right;i++)
+                    return_vec.push_back(matrix[top][i]);
+                top +=1;
+            }
+            //same col diff row
+            if(dir ==1){
+                for(int i=top; i<=bottom;i++)
+                    return_vec.push_back(matrix[i][right]);
+                right -=1;
+            }
+            if(dir == 2){
+                for (int i=right; i>=left; i--)
+                    return_vec.push_back(matrix[bottom][i]);
+                bottom -=1;
+            }
+            if(dir == 3){
+                for (int i=bottom; i>=top;i--)
+                  return_vec.push_back(matrix[i][left]);
+                left +=1;
+            }
+            
+            dir = (dir+1)%4;
+        }
+        return return_vec;        
+    }
+};
