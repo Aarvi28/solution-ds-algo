@@ -1,0 +1,26 @@
+// The API isBadVersion is defined for you.
+// bool isBadVersion(int version);
+
+class Solution {
+public:
+    int binary(long long left, long long right){
+        long long mid = (left+right)/2;
+    if (right - left == 1 || right == left)
+        return right;
+        
+     if (isBadVersion(mid)){
+            right = mid;
+        }
+        else{
+            left = mid;
+        }
+        
+        return binary(left,right);
+    }
+    
+    int firstBadVersion(int n) {
+        int result = 0;
+        result = binary(0,n);
+        return result;
+    }
+};
